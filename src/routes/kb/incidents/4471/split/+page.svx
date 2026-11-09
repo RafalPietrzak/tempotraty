@@ -2,9 +2,9 @@
 layout: runbook
 title: '#4471 · two date failures behind one ticket'
 owner: support desk
-status: known
+status: closed
 reviewed: '2026-11-09'
-signature: 'Codex · MEGA.dev S01E03'
+signature: "v1.eyJzdWIiOiI1MTg0IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTQyMjMwNjMsImV4cCI6MTc5NDMwOTQ2M30.ELp9roqGNfnG9ldRlcb9pFOO3TNQ8pUrnHUcAUNddEc"
 ---
 
 <script>
@@ -22,6 +22,10 @@ The shared parser reads the first field as the month, even for tenants that writ
 ## Booking v3 hint
 
 Booking v3 shows `MM/DD/YYYY` to day-first tenants while its form reads their input day first. People who follow the hint can book the wrong day. Make the hint match the date order the form actually accepts.
+
+## Engineering update · 5 October
+
+The desk closed #4471. Engineering fixed the shared parser with `fix(dates): parse dd/mm for eu locales`. The Booking v3 hint will not be fixed because the form was retired.
 
 ## How to count the reports
 
