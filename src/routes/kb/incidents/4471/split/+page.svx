@@ -1,0 +1,36 @@
+---
+layout: runbook
+title: '#4471 · two date failures behind one ticket'
+owner: support desk
+status: known
+reviewed: '2026-11-09'
+signature: 'Codex · MEGA.dev S01E03'
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+The [original incident](/kb/incidents/4471) grouped reports by a shared symptom: a booking landed on the wrong day. The reports point to two separate fixes.
+
+## Shared parser
+
+The shared parser reads the first field as the month, even for tenants that write the day first. A date entered for 7 April can be booked for 4 July. Parse dates in the tenant's date order and verify ambiguous dates against the intended booking day.
+
+## Booking v3 hint
+
+Booking v3 shows `MM/DD/YYYY` to day-first tenants while its form reads their input day first. People who follow the hint can book the wrong day. Make the hint match the date order the form actually accepts.
+
+## How to count the reports
+
+Deduplicate by report ID before filtering to #4471. Use the tenant's locale, booking form and report channel to assign each report. Intake tags reflect a guess from the browser. The desk's one-day-move notes stay with the group assigned by the tenant and channel.
+
+<CauseTable ticket={4471} />
+
+## Queue history in the export
+
+<QueueTimeline ticket={4471} />
+
+<RenderStamp {signature} />
